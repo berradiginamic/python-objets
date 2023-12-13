@@ -26,8 +26,11 @@ class Livre:
     def achetable(self, valeur):
         self._achetable = valeur
 
-    def affiche_info(self):
-        print(f"Titre: {self._titre}, Auteur: {self._auteur}, Achetable: {self._achetable}")
+    def afficher_info(self):
+        print(f"Titre: {self._titre}, Auteur: {self._auteur}, Achetable: {self._achetable} ,")
+
+    def __str__(self):
+        return f"Titre: {self._titre}, Auteur: {self._auteur}, Achetable: {self._achetable} ,"
 
 class LivrePapier(Livre):
 
@@ -35,9 +38,14 @@ class LivrePapier(Livre):
         super().__init__(titre, auteur, achetable)
         self._etat = etat
 
-    def affiche_info(self):
-        super().affiche_info()
-        print(f"etat: {self._etat}")
+    def afficher_info(self):
+        super().afficher_info()
+        print(f"Etat: {self._etat}")
+
+    def __str__(self):
+        return super().__str__() + f"Etat : {self._etat}"
+
+
 
 class LivreNumerique(Livre):
 
@@ -45,20 +53,22 @@ class LivreNumerique(Livre):
         super().__init__(titre, auteur, achetable)
         self._format = format
 
-    def affiche_info(self):
-        super().affiche_info()
-        print(f"format: {self._format}")
+    def afficher_info(self):
+        super().afficher_info()
+        print(f"Format: {self._format}")
+
+    def __str__(self):
+        return super().__str__() + f"Format : {self._format}"
 
 
-livres =[
+if __name__ == "__main__":
+    livres =[
     LivrePapier(titre="La mafia des généraux", auteur="Hichem ABOUD", achetable=False, etat="neuf"),
     LivrePapier(titre="La sale guerre", auteur="Habib SOUAIDIA", achetable=True, etat="moyen"),
     LivreNumerique(titre="Père riche père pauvre", auteur="Robert T.Kiyosaki", achetable=True, format="Kindle"),
     LivreNumerique(titre="Physique Chimie", auteur="Julien Calafell", achetable=False, format="PDF")
-]
-for livre in livres:
-    livre.affiche_info()
-    print()
-
-
+    ]
+    for livre in livres:
+       livre.afficher_info()
+       print("--------------------------------------------------------")
 
